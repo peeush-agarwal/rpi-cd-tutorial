@@ -38,4 +38,4 @@ jobs:
       - name: Run gunicorn
         run: |
           source flask-env/bin/activate
-          gunicorn -w 1 -b 0.0.0.0:4000 app:app
+          gunicorn -w 1 -b 0.0.0.0:4000 app:app -D --log-file=logs/gunicorn.log
