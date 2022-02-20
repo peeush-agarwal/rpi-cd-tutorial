@@ -35,7 +35,7 @@ jobs:
 
       # Install gunicorn
       - name: Install gunicorn
-        run: pip3 install gunicorn
+        run: python3 -m pip install gunicorn
         
       # Run gunicorn server
       - name: Run gunicorn
