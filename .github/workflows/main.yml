@@ -30,7 +30,7 @@ jobs:
       - name: Create new virtual env and activate it
         run: |
           python3 -m venv flask-env
-          pip3 install -r requirements.txt
+          python3 -m pip install -r requirements.txt
           source flask-env/bin/activate
 
       # Install gunicorn
