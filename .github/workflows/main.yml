@@ -41,7 +41,7 @@ jobs:
     steps:
       # Kill gunicorn server, if running already
       - name: Kill gunicorn
-        run: pkill gunicorn
+        run: pkill gunicorn || true
 
       # Run gunicorn server
       - name: Run gunicorn
