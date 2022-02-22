@@ -39,6 +39,10 @@ jobs:
     needs: build
     
     steps:
+      # Kill gunicorn server, if running already
+      - name: Kill gunicorn
+        run: pkill gunicorn
+
       # Run gunicorn server
       - name: Run gunicorn
         run: |
