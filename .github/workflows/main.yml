@@ -36,6 +36,7 @@ jobs:
 
   deploy:
     runs-on: self-hosted
+    needs: build
     
     steps:
       # Run gunicorn server
