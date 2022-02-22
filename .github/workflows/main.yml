@@ -33,7 +33,11 @@ jobs:
           source flask-env/bin/activate
           python3 -m pip install -r requirements.txt
           python3 -m pip install gunicorn
-        
+
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
       # Run gunicorn server
       - name: Run gunicorn
         run: |
