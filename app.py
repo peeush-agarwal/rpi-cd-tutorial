@@ -4,5 +4,5 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-  return 'Welcome to the Flask Dev!'
+  return 'Welcome to the Flask Dev team!'
 
