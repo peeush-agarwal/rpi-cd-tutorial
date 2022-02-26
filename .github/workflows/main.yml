@@ -11,6 +11,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  IMAGE_NAME: rpi-cd-tutorial:$(date +%s)
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,13 +30,15 @@ jobs:
       - name: Create a docker image
         run: |
           cd src/
-          docker build -t rpi_cd_tutorial:1.0 .
-
+          docker build -t $IMAGE_NAME .
 
   deploy:
     runs-on: self-hosted
     needs: build
     
     steps:
+      - name: Kill all running containers
+        run: docker kill $(docker ps -q)
+        
       - name: Run the docker image
-        run: docker run -d -p4000:4000 rpi_cd_tutorial:1.0
+        run: docker run -d -p4000:4000 $IMAGE_NAME
