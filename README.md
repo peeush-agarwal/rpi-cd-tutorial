@@ -2,6 +2,8 @@
 A tutorial on continuous integration and deployment on Raspberry Pi machine. This tutorial targets to connect the dots to have successful CI/CD pipeline for an application. 
 In this tutorial, we're building a minimal flask application which can be deployed to our Raspberry Pi machine with just a push to GitHub repo.
 
+[Detailed blog](https://peeushagarwal.medium.com/raspberry-pi-a-web-server-with-ci-cd-pipeline-fd077b3be63a)
+
 ## Pre-requisites
 
 1. A GitHub repository where you can host your source code and then use GitHub actions to push the code to Raspberry Pi.
