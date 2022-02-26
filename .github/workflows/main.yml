@@ -11,26 +11,30 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  IMAGE_NAME: rpi-cd-tutorial:$(date +%s)
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: self-hosted
+    
+    outputs:
+      tag_name: ${{ steps.set_tag_name.outputs.tag_name }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # Create a Docker image
+      - name: Set TAG_NAME
+        id: set_tag_name
+        run: echo "::set-output name=tag_name::$(date +%s)"
+        
       - name: Create a docker image
         run: |
           cd src/
-          docker build -t $IMAGE_NAME .
+          docker build -t rpi-cd-tutorial:${{ steps.set_tag_name.outputs.tag_name }} .
 
   deploy:
     runs-on: self-hosted
@@ -41,4 +45,4 @@ jobs:
         run: docker kill $(docker ps -q)
         
       - name: Run the docker image
-        run: docker run -d -p4000:4000 $IMAGE_NAME
+        run: docker run -d -p4000:4000 rpi-cd-tutorial:${{ needs.build.outputs.tag_name }}
