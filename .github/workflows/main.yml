@@ -46,7 +46,9 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Kill all running containers
-        run: ./docker_kill.sh
+        run: |
+          cd src/
+          ./docker_kill.sh
         
       - name: Run the docker image
         run: docker run -d -p4000:4000 rpi-cd-tutorial:${{ needs.build.outputs.tag_name }}
