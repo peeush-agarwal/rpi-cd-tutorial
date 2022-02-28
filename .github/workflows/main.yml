@@ -42,7 +42,7 @@ jobs:
     
     steps:
       - name: Kill all running containers
-        run: docker kill $(docker ps -q)
+        run: ./docker_kill.sh
         
       - name: Run the docker image
         run: docker run -d -p4000:4000 rpi-cd-tutorial:${{ needs.build.outputs.tag_name }}
