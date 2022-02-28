@@ -41,6 +41,10 @@ jobs:
     needs: build
     
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
       - name: Kill all running containers
         run: ./docker_kill.sh
         
